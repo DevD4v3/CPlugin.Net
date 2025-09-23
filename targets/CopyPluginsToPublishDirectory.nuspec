@@ -5,7 +5,7 @@
         <version>1.0.0</version>
         <authors>Dave Roman</authors>
         <owners>Dave Roman</owners>
-        <projectUrl>https://github.com/MrDave1999/CPlugin.Net</projectUrl>
+        <projectUrl>https://github.com/DevD4v3/CPlugin.Net</projectUrl>
         <license type="expression">MIT</license>
         <readme>README.md</readme>
         <icon>plugin-icon-nuget.png</icon>
