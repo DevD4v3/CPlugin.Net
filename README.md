@@ -9,13 +9,13 @@
 [![CopyPluginsToPublishDirectory](https://img.shields.io/nuget/vpre/CopyPluginsToPublishDirectory?label=CopyPluginsToPublishDirectory%20-%20nuget&color=red)](https://www.nuget.org/packages/CopyPluginsToPublishDirectory)
 [![downloads](https://img.shields.io/nuget/dt/CopyPluginsToPublishDirectory?color=yellow)](https://www.nuget.org/packages/CopyPluginsToPublishDirectory)
 
-[![CPlugin.Net-logo](https://raw.githubusercontent.com/MrDave1999/CPlugin.Net/bd7e7c8787e5a1b4987cd5a506e680261dce19b0/plugin-logo.png)](https://github.com/MrDave1999/CPlugin.Net)
+[![CPlugin.Net-logo](https://raw.githubusercontent.com/DevD4v3/CPlugin.Net/bd7e7c8787e5a1b4987cd5a506e680261dce19b0/plugin-logo.png)](https://github.com/DevD4v3/CPlugin.Net)
 
 A simple library that helps to implement a plugin-based architecture.
 
 The purpose of this library is to provide a way to load plugins from a configuration file such as settings.json or .env, to facilitate the exchange of dependencies without having to make changes to the host application.
 
-See the [API documentation](https://mrdave1999.github.io/CPlugin.Net/api/CPlugin.Net.html) for more information on this project.
+See the [API documentation](https://DevD4v3.github.io/CPlugin.Net/api/CPlugin.Net.html) for more information on this project.
 
 ## Index
 
@@ -134,7 +134,7 @@ When implementing this pattern in .NET there can be a number of technical challe
 
 - Ideally, plugins should not depend on each other (reduce coupling), but in such cases a mechanism must be found that allows them to communicate with each other (e.g. a message broker).
 
-- There are cases where the host application and the plugins have a reference to the same version of a dependency, so in their output directories they will have a copy of the same dependency. This may cause unexpected behavior when running the host application. See this [thread](https://stackoverflow.com/q/75435015) or [this one too](https://github.com/MrDave1999/CPlugin.Net/issues/27).
+- There are cases where the host application and the plugins have a reference to the same version of a dependency, so in their output directories they will have a copy of the same dependency. This may cause unexpected behavior when running the host application. See this [thread](https://stackoverflow.com/q/75435015) or [this one too](https://github.com/DevD4v3/CPlugin.Net/issues/27).
 
 To correctly implement this pattern in .NET, it is necessary to know how `AssemblyLoadContext` works. This [article](https://tsuyoshiushio.medium.com/understand-advanced-assemblyloadcontext-with-c-16a9d0cfeae3) explains it very well.
 
@@ -150,7 +150,7 @@ You must also install this secondary package that will be used in your plugins:
 ```sh
 dotnet add package CPlugin.Net.Attributes
 ```
-This package provides only one type: [PluginAttribute](https://mrdave1999.github.io/CPlugin.Net/api/CPlugin.Net.PluginAttribute.html) and is used only in plugins.
+This package provides only one type: [PluginAttribute](https://DevD4v3.github.io/CPlugin.Net/api/CPlugin.Net.PluginAttribute.html) and is used only in plugins.
 
 ## Overview
 
@@ -167,7 +167,7 @@ This library provides four main types:
 - `PluginLoader`
 - `TypeFinder`
 
-See the [API documentation](https://mrdave1999.github.io/CPlugin.Net/api/CPlugin.Net.html) for more information on these types.
+See the [API documentation](https://DevD4v3.github.io/CPlugin.Net/api/CPlugin.Net.html) for more information on these types.
 
 ### Get plugin names from .json file
 
@@ -348,17 +348,17 @@ foreach(ICommand command in commands)
 ```
 `FindSubtypesOf` method will search for the subtypes of `ICommand` in each plugin that has been loaded; if no subtype is found, it returns an empty enumerable.
 
-For this method to work correctly, each plugin must use the [PluginAttribute](https://mrdave1999.github.io/CPlugin.Net/api/CPlugin.Net.PluginAttribute.html) type to specify the subtypes. This is mandatory because the `TypeFinder` type creates the instances of the subtypes using this attribute.
+For this method to work correctly, each plugin must use the [PluginAttribute](https://DevD4v3.github.io/CPlugin.Net/api/CPlugin.Net.PluginAttribute.html) type to specify the subtypes. This is mandatory because the `TypeFinder` type creates the instances of the subtypes using this attribute.
 
 ### Integration with Microsoft.Extensions.DependencyInjection
 
-The [TypeFinder](https://mrdave1999.github.io/CPlugin.Net/api/CPlugin.Net.TypeFinder.html) type is limited: it does not support dependency injection via constructor. So if the implementation of `ICommand` has a constructor with dependencies you will get a runtime exception that the subtype does not have a parameterless constructor.
+The [TypeFinder](https://DevD4v3.github.io/CPlugin.Net/api/CPlugin.Net.TypeFinder.html) type is limited: it does not support dependency injection via constructor. So if the implementation of `ICommand` has a constructor with dependencies you will get a runtime exception that the subtype does not have a parameterless constructor.
 
-See this thread for more information: [Add support for dependency injection via constructor](https://github.com/MrDave1999/CPlugin.Net/issues/32)
+See this thread for more information: [Add support for dependency injection via constructor](https://github.com/DevD4v3/CPlugin.Net/issues/32)
 
 **Example:**
 
-The extension method called [AddSubtypesOf](https://mrdave1999.github.io/CPlugin.Net/api/CPlugin.Net.CPluginServiceCollectionExtensions.html) must be invoked after loading the plugins.
+The extension method called [AddSubtypesOf](https://DevD4v3.github.io/CPlugin.Net/api/CPlugin.Net.CPluginServiceCollectionExtensions.html) must be invoked after loading the plugins.
 ```cs
 var configurationRoot = new ConfigurationBuilder()
     .AddJsonFile("./appsettings.json")
@@ -379,7 +379,7 @@ foreach(ICommand command in commands)
 
 ### Apply PluginAttribute type to plugins
 
-This attribute must be applied at the assembly level in the plugin project. Do not forget to install the [CPlugin.Net.Attributes](https://www.nuget.org/packages/CPlugin.Net.Attributes) package in the plugin project in order to be able to use the [PluginAttribute](https://mrdave1999.github.io/CPlugin.Net/api/CPlugin.Net.PluginAttribute.html) type.
+This attribute must be applied at the assembly level in the plugin project. Do not forget to install the [CPlugin.Net.Attributes](https://www.nuget.org/packages/CPlugin.Net.Attributes) package in the plugin project in order to be able to use the [PluginAttribute](https://DevD4v3.github.io/CPlugin.Net/api/CPlugin.Net.PluginAttribute.html) type.
 
 **Example:**
 ```cs
@@ -530,7 +530,7 @@ These are the contracts shared between the host application and the plugins and 
 
 `<ExcludeAssets>runtime</ExcludeAssets>`. This setting has the same effect as `<Private>false</Private>` but works on package references that the Contracts project or one of its dependencies may include.
 
-The `Contracts.dll` assembly must only be copied to the output directory of the host application; otherwise, the [FindSubtypesOf](https://mrdave1999.github.io/CPlugin.Net/api/CPlugin.Net.TypeFinder.html) method will always return an empty enumerable.
+The `Contracts.dll` assembly must only be copied to the output directory of the host application; otherwise, the [FindSubtypesOf](https://DevD4v3.github.io/CPlugin.Net/api/CPlugin.Net.TypeFinder.html) method will always return an empty enumerable.
 
 ```xml
 <PackageReference Include="CPlugin.Net.Attributes" Version="1.0.0">
@@ -539,9 +539,9 @@ The `Contracts.dll` assembly must only be copied to the output directory of the 
 ```
 `<ExcludeAssets>runtime</ExcludeAssets>`. This avoids having to copy `CPlugin.Net.Attributes.dll` and its dependencies to the plugin output directory.
 
-Some plugins have a reference to the `CPlugin.Net.Attributes` package, so you should not copy the `CPlugin.Net.Attributes.dll` assembly to the plugin output directory. This is because the host application already contains such an assembly; otherwise, the [FindSubtypesOf](https://mrdave1999.github.io/CPlugin.Net/api/CPlugin.Net.TypeFinder.html) method will always return an empty enumerable.
+Some plugins have a reference to the `CPlugin.Net.Attributes` package, so you should not copy the `CPlugin.Net.Attributes.dll` assembly to the plugin output directory. This is because the host application already contains such an assembly; otherwise, the [FindSubtypesOf](https://DevD4v3.github.io/CPlugin.Net/api/CPlugin.Net.TypeFinder.html) method will always return an empty enumerable.
 
-See this thread: [Why can't I copy assemblies like Example.Contracts.dll and CPlugin.Net.Attributes.dll to the plugin output directory?](https://github.com/MrDave1999/CPlugin.Net/issues/27)
+See this thread: [Why can't I copy assemblies like Example.Contracts.dll and CPlugin.Net.Attributes.dll to the plugin output directory?](https://github.com/DevD4v3/CPlugin.Net/issues/27)
 
 ### Copy plugins to publishing directory
 
@@ -567,9 +567,9 @@ You need to add the package called [CopyPluginsToPublishDirectory](https://www.n
 
 You can find a complete and functional example in these projects:
 
-- [Example.HostConsoleApp](https://github.com/MrDave1999/CPlugin.Net/tree/master/samples/HostApplications/ConsoleApp)
-- [Example.HostWebApi](https://github.com/MrDave1999/CPlugin.Net/tree/master/samples/HostApplications/WebApi)
-- [Example.Plugins](https://github.com/MrDave1999/CPlugin.Net/tree/master/samples/Plugins)
+- [Example.HostConsoleApp](https://github.com/DevD4v3/CPlugin.Net/tree/master/samples/HostApplications/ConsoleApp)
+- [Example.HostWebApi](https://github.com/DevD4v3/CPlugin.Net/tree/master/samples/HostApplications/WebApi)
+- [Example.Plugins](https://github.com/DevD4v3/CPlugin.Net/tree/master/samples/Plugins)
 - [DentallApp.BackEnd.Host](https://github.com/DentallApp/back-end/tree/dev/src/HostApplication)
 - [DentallApp.BackEnd.Plugins](https://github.com/DentallApp/back-end/tree/dev/src/Plugins)
 
