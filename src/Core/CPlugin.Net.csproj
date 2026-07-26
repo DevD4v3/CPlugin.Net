@@ -6,7 +6,6 @@
     <LangVersion>latest</LangVersion>
     <RootNamespace>CPlugin.Net</RootNamespace>
     <PackageId>CPlugin.Net</PackageId>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>Dave Roman</Authors>
     <Copyright>Copyright (c) Dave Roman</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>
