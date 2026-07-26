@@ -44,7 +44,7 @@ See the [API documentation](https://DevD4v3.github.io/CPlugin.Net/api/CPlugin.Ne
   - [Copy plugins to publishing directory](#copy-plugins-to-publishing-directory)
 - [Samples](#samples)
 - [References](#references)
-- [Contribution](#contribution)
+- [License](#license)
 
 ## Features
 
@@ -197,9 +197,9 @@ List<string> pluginFiles = jsonConfiguration.GetPluginFiles().ToList();
 
 **Example:**
 ```sh
-/home/admin/HostApplication/bin/Debug/net8.0/plugins/MyPlugin1/MyPlugin1.dll
-/home/admin/HostApplication/bin/Debug/net8.0/plugins/MyPlugin2/MyPlugin2.dll
-/home/admin/HostApplication/bin/Debug/net8.0/plugins/MyPlugin3/MyPlugin3.dll
+/home/admin/HostApplication/bin/Debug/net10.0/plugins/MyPlugin1/MyPlugin1.dll
+/home/admin/HostApplication/bin/Debug/net10.0/plugins/MyPlugin2/MyPlugin2.dll
+/home/admin/HostApplication/bin/Debug/net10.0/plugins/MyPlugin3/MyPlugin3.dll
 ```
 It is very important that the plugins are always in the `plugins` folder and in their own directory as in the previous example.
 
@@ -240,9 +240,9 @@ List<string> pluginFiles = envConfiguration.GetPluginFiles().ToList();
 
 **Example:**
 ```sh
-/home/admin/HostApplication/bin/Debug/net8.0/plugins/MyPlugin1/MyPlugin1.dll
-/home/admin/HostApplication/bin/Debug/net8.0/plugins/MyPlugin2/MyPlugin2.dll
-/home/admin/HostApplication/bin/Debug/net8.0/plugins/MyPlugin3/MyPlugin3.dll
+/home/admin/HostApplication/bin/Debug/net10.0/plugins/MyPlugin1/MyPlugin1.dll
+/home/admin/HostApplication/bin/Debug/net10.0/plugins/MyPlugin2/MyPlugin2.dll
+/home/admin/HostApplication/bin/Debug/net10.0/plugins/MyPlugin3/MyPlugin3.dll
 ```
 As mentioned in the previous section. The plugins must be in the `plugins` directory and in their own directory so that the plugin loader can locate them.
 
@@ -417,7 +417,7 @@ When you compile your plugins, the result of the compilation should be copied to
 └── MyApp/
     ├── src/
     │   ├── HostApplication/
-    │   │   ├── bin/Debug/net8.0/plugins/
+    │   │   ├── bin/Debug/net10.0/plugins/
     │   │   │   ├── MyPlugin1/
     │   │   │   │   └── MyPlugin1.dll
     │   │   │   ├── MyPlugin2/
@@ -501,9 +501,9 @@ Once the root directory of the project is obtained, it is necessary to indicate 
 
 `OutDir` will contain these possible values:
 ```sh
-/home/admin/MyApp/src/HostApplication/bin/Debug/net8.0/plugins/MyPlugin1/
-/home/admin/MyApp/src/HostApplication/bin/Debug/net8.0/plugins/MyPlugin2/
-/home/admin/MyApp/src/HostApplication/bin/Debug/net8.0/plugins/MyPlugin3/
+/home/admin/MyApp/src/HostApplication/bin/Debug/net10.0/plugins/MyPlugin1/
+/home/admin/MyApp/src/HostApplication/bin/Debug/net10.0/plugins/MyPlugin2/
+/home/admin/MyApp/src/HostApplication/bin/Debug/net10.0/plugins/MyPlugin3/
 ```
 Remember that the host application needs to know where to locate the plugins in order to load it.
 
@@ -545,7 +545,7 @@ See this thread: [Why can't I copy assemblies like Example.Contracts.dll and CPl
 
 ### Copy plugins to publishing directory
 
-You need to add the package called [CopyPluginsToPublishDirectory](https://www.nuget.org/packages/CopyPluginsToPublishDirectory) in the project file of the host application. This package allows to copy the `plugins` directory from the output directory (e.g. bin/Debug/net8.0) to the publish directory.
+You need to add the package called [CopyPluginsToPublishDirectory](https://www.nuget.org/packages/CopyPluginsToPublishDirectory) in the project file of the host application. This package allows to copy the `plugins` directory from the output directory (e.g. bin/Debug/net10.0) to the publish directory.
 
 **Example:**
 ```xml
@@ -581,14 +581,6 @@ You can find a complete and functional example in these projects:
 - [Plug-in Architecture](https://medium.com/omarelgabrys-blog/plug-in-architecture-dec207291800)
 - [Plug-in (computing)](https://en.wikipedia.org/wiki/Plug-in_(computing))
 
-## Contribution
+## License
 
-Any contribution is welcome! Remember that you can contribute not only in the code, but also in the documentation or even improve the tests.
-
-Follow the steps below:
-
-- Fork it
-- Create your feature branch (git checkout -b my-new-change)
-- Commit your changes (git commit -am 'Add some change')
-- Push to the branch (git push origin my-new-change)
-- Create new Pull Request
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/DevD4v3/CPlugin.Net/blob/master/LICENSE) file for details.
