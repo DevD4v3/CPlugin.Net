@@ -6,7 +6,7 @@ var jsonConfiguration = new CPluginJsonConfiguration(builder.Configuration);
 // Loads the plugins from the appsettings.json file.
 PluginLoader.Load(jsonConfiguration);
 var startups = TypeFinder.FindSubtypesOf<IWebStartup>();
-foreach(IWebStartup startup in startups)
+foreach (IWebStartup startup in startups)
 {
     startup.ConfigureServices(builder.Services);
 }
@@ -30,7 +30,7 @@ builder.Services.AddSwaggerGen(options =>
     options.CustomSchemaIds(type => $"{type.Name}_{Guid.NewGuid()}");
 });
 
-var app = builder.Build(); 
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

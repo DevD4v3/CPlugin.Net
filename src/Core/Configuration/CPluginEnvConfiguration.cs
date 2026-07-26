@@ -25,7 +25,7 @@ public class CPluginEnvConfiguration : CPluginConfigurationBase
     public override IEnumerable<string> GetPluginFiles()
     {
         var retrievedValue = Environment.GetEnvironmentVariable("PLUGINS");
-        if(retrievedValue is null)
+        if (retrievedValue is null)
             return [];
 
         var pluginFiles = retrievedValue

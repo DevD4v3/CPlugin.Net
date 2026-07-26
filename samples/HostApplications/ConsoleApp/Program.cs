@@ -7,7 +7,7 @@ var envConfiguration = new CPluginEnvConfiguration();
 // Loads the plugins from the .env file.
 PluginLoader.Load(envConfiguration);
 var commands = TypeFinder.FindSubtypesOf<ICommand>();
-foreach(ICommand command in commands)
+foreach (ICommand command in commands)
 {
     command.Execute();
 }

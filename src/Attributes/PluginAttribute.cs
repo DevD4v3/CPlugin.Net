@@ -44,13 +44,13 @@ public class PluginAttribute : Attribute
             throw new ArgumentNullException(nameof(pluginType));
         }
 
-        if(pluginType.IsInterface || pluginType.IsAbstract)
+        if (pluginType.IsInterface || pluginType.IsAbstract)
         {
             var message = $"'{pluginType.FullName}' type must not be an interface or an abstract class.";
             throw new ArgumentException(message, nameof(pluginType));
         }
 
-        if(!pluginType.IsClass)
+        if (!pluginType.IsClass)
         {
             var message = $"'{pluginType.FullName}' type must be an instantiable class.";
             throw new ArgumentException(message, nameof(pluginType));

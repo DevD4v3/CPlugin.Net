@@ -11,7 +11,7 @@ public class Post
         var client = factory.CreateClient();
 
         // Act
-        var httpResponse = await client.PostAsJsonAsync(requestUri, new {});
+        var httpResponse = await client.PostAsJsonAsync(requestUri, new { });
         var result = await httpResponse
             .Content
             .ReadFromJsonAsync<Result>();

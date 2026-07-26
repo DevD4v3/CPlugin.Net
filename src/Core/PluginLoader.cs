@@ -37,7 +37,7 @@ public static class PluginLoader
         foreach (string assemblyFile in assemblyFiles)
         {
             Assembly currentAssembly = FindAssembly(assemblyFile);
-            if(currentAssembly is null)
+            if (currentAssembly is null)
                 LoadAssembly(assemblyFile);
         }
     }
