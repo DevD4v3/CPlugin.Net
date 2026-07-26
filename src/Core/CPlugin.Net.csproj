@@ -19,7 +19,6 @@
     <Description>
       A simple library that allows to implement a plugin-based architecture.
     </Description>
-    <Version>1.2.0</Version>
     <PackageReleaseNotes>See https://github.com/DevD4v3/CPlugin.Net/releases</PackageReleaseNotes>
   </PropertyGroup>
 
