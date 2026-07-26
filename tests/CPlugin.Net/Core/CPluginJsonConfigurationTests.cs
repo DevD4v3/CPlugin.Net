@@ -3,7 +3,7 @@
 public class CPluginJsonConfigurationTests
 {
     [Test]
-    public void GetPluginFiles_WhenPluginFilesArePresent_ShouldReturnsFullPaths()
+    public void GetPluginFiles_WhenPluginFilesArePresent_ShouldReturnFullPaths()
     {
         // Arrange
         var configurationRoot = new ConfigurationBuilder()
@@ -26,7 +26,7 @@ public class CPluginJsonConfigurationTests
     }
 
     [Test]
-    public void GetPluginFiles_WhenPluginFilesAreNotPresent_ShouldReturnsEmptyEnumerable()
+    public void GetPluginFiles_WhenPluginFilesAreNotPresent_ShouldReturnEmptyEnumerable()
     {
         // Arrange
         var configurationRoot = new ConfigurationBuilder()
@@ -42,7 +42,7 @@ public class CPluginJsonConfigurationTests
     }
 
     [Test]
-    public void GetPluginFiles_WhenPluginsSectionIsNotPresent_ShouldReturnsEmptyEnumerable()
+    public void GetPluginFiles_WhenPluginsSectionIsNotPresent_ShouldReturnEmptyEnumerable()
     {
         // Arrange
         var configurationRoot = new ConfigurationBuilder()

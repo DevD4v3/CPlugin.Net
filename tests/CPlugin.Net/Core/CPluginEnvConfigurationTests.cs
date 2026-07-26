@@ -42,7 +42,7 @@ public class CPluginEnvConfigurationTests
     }
 
     [TestCaseSource(typeof(EnvConfigurationTestCases))]
-    public void GetPluginFiles_WhenPluginFilesArePresent_ShouldReturnsFullPaths(string pluginFiles)
+    public void GetPluginFiles_WhenPluginFilesArePresent_ShouldReturnFullPaths(string pluginFiles)
     {
         // Arrange
         Environment.SetEnvironmentVariable("PLUGINS", pluginFiles);
@@ -63,7 +63,7 @@ public class CPluginEnvConfigurationTests
     }
 
     [Test]
-    public void GetPluginFiles_WhenPluginFilesAreObtainedFromEnvFile_ShouldReturnsFullPaths()
+    public void GetPluginFiles_WhenPluginFilesAreObtainedFromEnvFile_ShouldReturnFullPaths()
     {
         // Arrange
         new EnvLoader()
@@ -88,7 +88,7 @@ public class CPluginEnvConfigurationTests
     }
 
     [Test]
-    public void GetPluginFiles_WhenPluginFilesAreNotPresent_ShouldReturnsEmptyEnumerable()
+    public void GetPluginFiles_WhenPluginFilesAreNotPresent_ShouldReturnEmptyEnumerable()
     {
         // Arrange
         Environment.SetEnvironmentVariable("PLUGINS", "    ");
@@ -102,7 +102,7 @@ public class CPluginEnvConfigurationTests
     }
 
     [Test]
-    public void GetPluginFiles_WhenPluginsKeyIsNotPresent_ShouldReturnsEmptyEnumerable()
+    public void GetPluginFiles_WhenPluginsKeyIsNotPresent_ShouldReturnEmptyEnumerable()
     {
         // Arrange
         // To ensure that the variable is removed.

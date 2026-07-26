@@ -3,7 +3,7 @@
 public class PostRequest
 {
     [Test]
-    public async Task Post_WhenUserIsCreated_ShouldReturnsHttpStatusCodeCreated()
+    public async Task Post_WhenUserIsCreated_ShouldReturnHttpStatusCodeCreated()
     {
         // Arrange
         using var factory = new WebApplicationFactory<Program>();
@@ -28,7 +28,7 @@ public class PostRequest
     [TestCase(" ", " ")]
     [TestCase("Bob", " ")]
     [TestCase(" ", "Bob")]
-    public async Task Post_WhenNameOrPasswordIsEmpty_ShouldReturnsHttpStatusCodeBadRequest(string name, string password)
+    public async Task Post_WhenNameOrPasswordIsEmpty_ShouldReturnHttpStatusCodeBadRequest(string name, string password)
     {
         // Arrange
         using var factory = new WebApplicationFactory<Program>();
@@ -51,7 +51,7 @@ public class PostRequest
     }
 
     [Test]
-    public async Task Post_WhenEmployeeIsCreated_ShouldReturnsHttpStatusCodeCreated()
+    public async Task Post_WhenEmployeeIsCreated_ShouldReturnHttpStatusCodeCreated()
     {
         // Arrange
         using var factory = new WebApplicationFactory<Program>();

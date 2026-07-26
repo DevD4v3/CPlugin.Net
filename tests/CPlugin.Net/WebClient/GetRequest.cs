@@ -3,7 +3,7 @@
 public class GetRequest
 {
     [Test]
-    public async Task Get_WhenUsersAreObtained_ShouldReturnsHttpStatusCodeOk()
+    public async Task Get_WhenUsersAreObtained_ShouldReturnHttpStatusCodeOk()
     {
         // Arrange
         using var factory = new WebApplicationFactory<Program>();
@@ -23,7 +23,7 @@ public class GetRequest
     }
 
     [Test]
-    public async Task Get_WhenThereAreNoUsers_ShouldReturnsHttpStatusCodeUnprocessableEntity()
+    public async Task Get_WhenThereAreNoUsers_ShouldReturnHttpStatusCodeUnprocessableEntity()
     {
         // Arrange
         using var factory = new WebApplicationFactory<Program>();
@@ -43,7 +43,7 @@ public class GetRequest
     }
 
     [Test]
-    public async Task Get_WhenEmployeesAreObtained_ShouldReturnsHttpStatusCodeOk()
+    public async Task Get_WhenEmployeesAreObtained_ShouldReturnHttpStatusCodeOk()
     {
         // Arrange
         using var factory = new WebApplicationFactory<Program>();
@@ -63,7 +63,7 @@ public class GetRequest
     }
 
     [Test]
-    public async Task Get_WhenGettingPluginInfo_ShouldReturnsHttpStatusCodeOk()
+    public async Task Get_WhenGettingPluginInfo_ShouldReturnHttpStatusCodeOk()
     {
         // Arrange
         using var factory = new WebApplicationFactory<Program>();

@@ -24,7 +24,7 @@ public class Runner2 : IRunner
 public class TypeFinderTests
 {
     [Test]
-    public void FindSubtypesOf_WhenSupertypeHasSubtypes_ShouldReturnsInstancesOfSubtypes()
+    public void FindSubtypesOf_WhenSupertypeHasSubtypes_ShouldReturnInstancesOfSubtypes()
     {
         // Arrange
         var assemblies = new[]
@@ -42,7 +42,7 @@ public class TypeFinderTests
     }
 
     [Test]
-    public void FindSubtypesOf_WhenSupertypeDoesNotHaveSubtypes_ShouldReturnsEmptyEnumerable()
+    public void FindSubtypesOf_WhenSupertypeDoesNotHaveSubtypes_ShouldReturnEmptyEnumerable()
     {
         // Arrange
         var assemblies = new[]
@@ -58,7 +58,7 @@ public class TypeFinderTests
     }
 
     [Test]
-    public void FindSubtypesOf_WhenThereAreNoAssembliesLoaded_ShouldReturnsEmptyEnumerable()
+    public void FindSubtypesOf_WhenThereAreNoAssembliesLoaded_ShouldReturnEmptyEnumerable()
     {
         // Arrange
         var assemblies = Enumerable.Empty<Assembly>();
@@ -71,7 +71,7 @@ public class TypeFinderTests
     }
 
     [Test]
-    public void FindSubtypesOf_WhenNoAssemblyUsesPluginAttribute_ShouldReturnsEmptyEnumerable()
+    public void FindSubtypesOf_WhenNoAssemblyUsesPluginAttribute_ShouldReturnEmptyEnumerable()
     {
         // Arrange
         var assemblies = new[]

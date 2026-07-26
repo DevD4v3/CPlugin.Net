@@ -4,7 +4,7 @@ public class Post
 {
     [TestCase("/Person")]
     [TestCase("/People")]
-    public async Task Post_WhenPersonIsCreated_ShouldReturnsHttpStatusCodeCreated(string requestUri)
+    public async Task Post_WhenPersonIsCreated_ShouldReturnHttpStatusCodeCreated(string requestUri)
     {
         // Arrange
         using var factory = new WebApplicationFactory<Program>();

@@ -3,7 +3,7 @@
 public class Get
 {
     [Test]
-    public async Task Get_WhenAppointmentsAreObtained_ShouldReturnsHttpStatusCodeOk()
+    public async Task Get_WhenAppointmentsAreObtained_ShouldReturnHttpStatusCodeOk()
     {
         // Arrange
         using var factory = new WebApplicationFactory<Program>();
@@ -23,7 +23,7 @@ public class Get
     }
 
     [Test]
-    public async Task Get_WhenAppointmentIsObtained_ShouldReturnsHttpStatusCodeOk()
+    public async Task Get_WhenAppointmentIsObtained_ShouldReturnHttpStatusCodeOk()
     {
         // Arrange
         using var factory = new WebApplicationFactory<Program>();
@@ -43,7 +43,7 @@ public class Get
     }
 
     [Test]
-    public async Task Get_WhenAppointmentIsNotFound_ShouldReturnsHttpStatusCodeNotFound()
+    public async Task Get_WhenAppointmentIsNotFound_ShouldReturnHttpStatusCodeNotFound()
     {
         // Arrange
         using var factory = new WebApplicationFactory<Program>();
@@ -64,7 +64,7 @@ public class Get
 
     [TestCase("/People")]
     [TestCase("/Person")]
-    public async Task Get_WhenPersonsAreObtained_ShouldReturnsHttpStatusCodeOk(string requestUri)
+    public async Task Get_WhenPersonsAreObtained_ShouldReturnHttpStatusCodeOk(string requestUri)
     {
         // Arrange
         using var factory = new WebApplicationFactory<Program>();
@@ -84,7 +84,7 @@ public class Get
     }
 
     [Test]
-    public async Task Get_WhenWeatherForecastAreObtained_ShouldReturnsHttpStatusCodeOk()
+    public async Task Get_WhenWeatherForecastAreObtained_ShouldReturnHttpStatusCodeOk()
     {
         // Arrange
         using var factory = new WebApplicationFactory<Program>();
@@ -104,7 +104,7 @@ public class Get
     }
 
     [Test]
-    public async Task Get_WhenServiceNameIsObtained_ShouldReturnsHttpStatusCodeOk()
+    public async Task Get_WhenServiceNameIsObtained_ShouldReturnHttpStatusCodeOk()
     {
         // Arrange
         using var factory = new WebApplicationFactory<Program>();
@@ -123,7 +123,7 @@ public class Get
     }
 
     [Test]
-    public async Task Get_WhenSummariesAreObtained_ShouldReturnsHttpStatusCodeOk()
+    public async Task Get_WhenSummariesAreObtained_ShouldReturnHttpStatusCodeOk()
     {
         // Arrange
         using var factory = new WebApplicationFactory<Program>();
