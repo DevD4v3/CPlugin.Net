@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="DotEnv.Core" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
     <PackageReference Include="CopyPluginsToPublishDirectory" />
   </ItemGroup>
   

@@ -40,11 +40,15 @@ public abstract class CPluginConfigurationBase
         bool hasDllExtension = Path
             .GetExtension(pluginFile)
             .Equals(".dll");
+
         pluginFile = hasDllExtension ? pluginFile : pluginFile + ".dll";
+
         // Example: MyPlugin1
         var pluginDirectory = Path.GetFileNameWithoutExtension(pluginFile);
+
         // Example: /home/admin/HostApplication/bin/Debug/net7.0/plugins/MyPlugin1
         var basePath = Path.Combine(AppContext.BaseDirectory, "plugins", pluginDirectory);
+
         // Example: /home/admin/HostApplication/bin/Debug/net7.0/plugins/MyPlugin1/MyPlugin1.dll
         var pluginPath = Path.Combine(basePath, pluginFile);
         return pluginPath;
