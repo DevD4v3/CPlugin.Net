@@ -43,6 +43,12 @@ jobs:
             --no-build \
             -p:Version=$VERSION
 
+          dotnet pack \
+            src/Attributes/CPlugin.Net.Attributes.csproj \
+            -c Release \
+            --no-build \
+            -p:Version=$VERSION
+
       - name: NuGet login
         uses: NuGet/login@v1
         id: login
@@ -53,5 +59,10 @@ jobs:
         run: |
           dotnet nuget push \
             src/Core/bin/Release/*.nupkg \
+            --api-key ${{ steps.login.outputs.NUGET_API_KEY }} \
+            --source https://api.nuget.org/v3/index.json
+
+          dotnet nuget push \
+            src/Attributes/bin/Release/*.nupkg \
             --api-key ${{ steps.login.outputs.NUGET_API_KEY }} \
             --source https://api.nuget.org/v3/index.json
