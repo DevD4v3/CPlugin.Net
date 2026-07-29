@@ -1,4 +1,4 @@
 ﻿global using Microsoft.Extensions.DependencyInjection;
-global using Example.Contracts;
 global using CPlugin.Net;
-global using DotEnv.Core;
+global using Example.Contracts;
+global using Example.WeaponsPlugin;

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.8.11912.234 insiders
+VisualStudioVersion = 18.8.11912.234
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CPlugin.Net.Attributes", "src\Attributes\CPlugin.Net.Attributes.csproj", "{D9737294-F5EA-4EA0-8BF2-2BF5C3954DD9}"
 EndProject
@@ -35,6 +35,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.PersonPlugin", "samples\Plugins\PersonPlugin\Example.PersonPlugin.csproj", "{18534944-583B-4924-AC5B-E0655FD92AAC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.ProgramPlugin", "samples\Plugins\ProgramPlugin\Example.ProgramPlugin.csproj", "{BA75A525-7013-4F0D-85FD-416E744098FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.GunGamePlugin", "samples\Plugins\GunGamePlugin\Example.GunGamePlugin.csproj", "{1DD684E8-9889-8431-95FB-DE64D8C411F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.WeaponsPlugin", "samples\Plugins\WeaponsPlugin\Example.WeaponsPlugin.csproj", "{17C8B89A-5ABF-CE24-3948-9ACC366D4E86}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Test", "samples\Test\Example.Test.csproj", "{1E64908D-DC48-4B83-BB25-CF36821EB37F}"
 EndProject
@@ -152,6 +156,14 @@ Global
 		{0BCD3305-F0D5-43E6-B879-EEF0827558A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BCD3305-F0D5-43E6-B879-EEF0827558A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BCD3305-F0D5-43E6-B879-EEF0827558A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DD684E8-9889-8431-95FB-DE64D8C411F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DD684E8-9889-8431-95FB-DE64D8C411F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DD684E8-9889-8431-95FB-DE64D8C411F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DD684E8-9889-8431-95FB-DE64D8C411F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17C8B89A-5ABF-CE24-3948-9ACC366D4E86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17C8B89A-5ABF-CE24-3948-9ACC366D4E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17C8B89A-5ABF-CE24-3948-9ACC366D4E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17C8B89A-5ABF-CE24-3948-9ACC366D4E86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -177,6 +189,8 @@ Global
 		{E2373A36-6D3E-44DE-99FF-4CC019E05D06} = {290C410D-33F9-4C82-A334-04709D751E16}
 		{FEE1E508-3313-4C7A-A7E6-5EBA8D47D3FD} = {7DC4CDB0-B0CD-48B5-91C7-40F05F662FA8}
 		{0BCD3305-F0D5-43E6-B879-EEF0827558A8} = {7DC4CDB0-B0CD-48B5-91C7-40F05F662FA8}
+		{1DD684E8-9889-8431-95FB-DE64D8C411F7} = {FA19544E-3925-4A1C-A994-CFA72FDC10AC}
+		{17C8B89A-5ABF-CE24-3948-9ACC366D4E86} = {FA19544E-3925-4A1C-A994-CFA72FDC10AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {67EE578E-EE0A-4E98-AE5A-1771751D8B5F}
