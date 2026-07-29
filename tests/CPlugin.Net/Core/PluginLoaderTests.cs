@@ -79,4 +79,54 @@ public class PluginLoaderTests
             .Should()
             .Be(expectedAssemblies);
     }
+
+    [Test]
+    public void Load_WhenPluginDependencyIsNotConfigured_ShouldThrowPluginDependencyException()
+    {
+        // Arrange
+        var value = "TestProject.GunGamePlugin.dll";
+        Environment.SetEnvironmentVariable("PLUGINS", value);
+        var configuration = new CPluginEnvConfiguration();
+
+        // Act
+        Action act = () => PluginLoader.Load(configuration);
+
+        // Assert
+        act.Should()
+           .Throw<PluginDependencyException>()
+           .WithMessage("*TestProject.WeaponsPlugin.dll*");
+    }
+
+    [Test]
+    public void Load_WhenPluginDependencyIsResolved_ShouldLoadPluginsSuccessfully()
+    {
+        // Arrange
+        var value =
+        """
+        TestProject.WeaponsPlugin.dll
+        TestProject.GunGamePlugin.dll
+        """;
+
+        Environment.SetEnvironmentVariable("PLUGINS", value);
+        var configuration = new CPluginEnvConfiguration();
+        var services = new ServiceCollection();
+
+        // Act
+        PluginLoader.Load(configuration);
+
+        var weaponPlugins = TypeFinder.FindSubtypesOf<IWeaponPlugin>();
+        foreach (IWeaponPlugin weaponPlugin in weaponPlugins)
+        {
+            weaponPlugin.ConfigureServices(services);
+        }
+
+        services.AddSubtypesOf<IGameMode>(ServiceLifetime.Transient);
+
+        using ServiceProvider serviceProvider = services.BuildServiceProvider();
+        var gameModes = serviceProvider.GetServices<IGameMode>().ToArray();
+
+        // Assert
+        string weapons = gameModes[0].ExecuteAction();
+        weapons.Should().Be("Pistol, AK-47");
+    }
 }

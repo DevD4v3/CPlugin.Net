@@ -32,6 +32,8 @@
     <PluginProjectReference Include="..\Plugins\TestProject.JsonPlugin\TestProject.JsonPlugin.csproj" />
     <PluginProjectReference Include="..\Plugins\TestProject.OldJsonPlugin\TestProject.OldJsonPlugin.csproj" />
     <PluginProjectReference Include="..\Plugins\TestProject.WebPlugin\TestProject.WebPlugin.csproj" />
+    <PluginProjectReference Include="..\Plugins\TestProject.GunGamePlugin\TestProject.GunGamePlugin.csproj" />
+    <PluginProjectReference Include="..\Plugins\TestProject.WeaponsPlugin\TestProject.WeaponsPlugin.csproj" />
     <!-- End -->
     
     <ProjectReference Include="..\TestProject.Contracts\TestProject.Contracts.csproj" />
