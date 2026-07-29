@@ -16,7 +16,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <Description>
-      A simple package that includes the PluginAttribute type to be used by plugins.
+      A simple package that includes attributes for CPlugin.Net plugins.
     </Description>
     <Version>1.0.0</Version>
   </PropertyGroup>
