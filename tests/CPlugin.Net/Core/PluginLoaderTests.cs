@@ -129,4 +129,21 @@ public class PluginLoaderTests
         string weapons = gameModes[0].ExecuteAction();
         weapons.Should().Be("Pistol, AK-47");
     }
+
+    [Test]
+    public void Load_WhenPluginIsNotFound_ShouldThrowPluginNotFoundException()
+    {
+        // Arrange
+        var value = "Example.EconomyPlugin.dll";
+        Environment.SetEnvironmentVariable("PLUGINS", value);
+        var configuration = new CPluginEnvConfiguration();
+
+        // Act
+        Action act = () => PluginLoader.Load(configuration);
+
+        // Assert
+        act.Should()
+           .Throw<PluginNotFoundException>()
+           .WithMessage("*Example.EconomyPlugin.dll*");
+    }
 }

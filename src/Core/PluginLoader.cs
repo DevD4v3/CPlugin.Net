@@ -33,6 +33,9 @@ public static class PluginLoader
     /// <exception cref="PluginDependencyException">
     /// A plugin declares a dependency that cannot be resolved.
     /// </exception>
+    /// <exception cref="PluginNotFoundException">
+    /// A configured plugin assembly could not be found.
+    /// </exception>
     public static void Load(CPluginConfigurationBase configuration)
     {
         ArgumentNullException.ThrowIfNull(configuration);
