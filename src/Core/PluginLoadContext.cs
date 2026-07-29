@@ -10,6 +10,20 @@ internal class PluginLoadContext : AssemblyLoadContext
 
     public PluginLoadContext(string pluginPath)
     {
+        if (!File.Exists(pluginPath))
+        {
+            var message =
+            $"""
+             The plugin '{Path.GetFileName(pluginPath)}' was not found at:
+
+             {pluginPath}
+
+             Ensure the plugin project has been built and the assembly exists in the plugins directory.
+             """;
+
+            throw new PluginNotFoundException(message);
+        }
+
         _resolver = new AssemblyDependencyResolver(pluginPath);
     }
 
