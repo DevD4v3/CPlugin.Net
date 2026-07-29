@@ -35,6 +35,7 @@ See the [API documentation](https://DevD4v3.github.io/CPlugin.Net/api/CPlugin.Ne
   - [Search for subtypes that implement the contract](#search-for-subtypes-that-implement-the-contract)
   - [Integration with Microsoft.Extensions.DependencyInjection](#integration-with-microsoftextensionsdependencyinjection)
   - [Apply PluginAttribute type to plugins](#apply-pluginattribute-type-to-plugins)
+  - [Declare plugin dependencies](#declare-plugin-dependencies)
   - [Creation of a Directory.Build.props file](#creation-of-a-directorybuildprops-file)
     - [Configuration](#configuration)
     - [ProjectRootDir](#projectrootdir)
@@ -44,6 +45,7 @@ See the [API documentation](https://DevD4v3.github.io/CPlugin.Net/api/CPlugin.Ne
   - [Copy plugins to publishing directory](#copy-plugins-to-publishing-directory)
 - [Samples](#samples)
 - [References](#references)
+- [Contribution](#contribution)
 - [License](#license)
 
 ## Features
@@ -190,6 +192,7 @@ Then you can use the `CPluginJsonConfiguration` type to get the plugin files.
 var configurationRoot = new ConfigurationBuilder()
     .AddJsonFile("./appsettings.json")
     .Build();
+
 var jsonConfiguration = new CPluginJsonConfiguration(configurationRoot);
 List<string> pluginFiles = jsonConfiguration.GetPluginFiles().ToList();
 ```
@@ -233,6 +236,7 @@ Then you can use the `CPluginEnvConfiguration` type to get the plugin files.
 new DotEnv.Core.EnvLoader()
     .AddEnvFile(".env")
     .Load();
+
 var envConfiguration = new CPluginEnvConfiguration();
 List<string> pluginFiles = envConfiguration.GetPluginFiles().ToList();
 ```
@@ -258,6 +262,7 @@ In the `Program.cs` (entry point) call the plugin loader.
 new DotEnv.Core.EnvLoader()
     .AddEnvFile(".env")
     .Load();
+
 var envConfiguration = new CPluginEnvConfiguration();
 // Loads the plugins from the .env file.
 PluginLoader.Load(envConfiguration);
@@ -268,6 +273,7 @@ PluginLoader.Load(envConfiguration);
 var configurationRoot = new ConfigurationBuilder()
     .AddJsonFile("./appsettings.json")
     .Build();
+
 var jsonConfiguration = new CPluginJsonConfiguration(configurationRoot);
 // Loads the plugins from the .appsettings file.
 PluginLoader.Load(jsonConfiguration);
@@ -292,8 +298,10 @@ This property is very useful when you want to add the loaded assemblies to a thi
 ```cs
 var builder = WebApplication.CreateBuilder(args);
 var jsonConfiguration = new CPluginJsonConfiguration(builder.Configuration);
+
 PluginLoader.Load(jsonConfiguration);
 IMvcBuilder mvcBuilder = builder.Services.AddControllers();
+
 foreach (Assembly assembly in PluginLoader.Assemblies)
 {
     // This allows to register the controllers for each loaded plugin.
@@ -337,11 +345,12 @@ Therefore, you can use the `TypeFinder` type in your host application after you 
 var configurationRoot = new ConfigurationBuilder()
     .AddJsonFile("./appsettings.json")
     .Build();
+
 var jsonConfiguration = new CPluginJsonConfiguration(configurationRoot);
 PluginLoader.Load(jsonConfiguration);
 
 IEnumerable<ICommand> commands = TypeFinder.FindSubtypesOf<ICommand>();
-foreach(ICommand command in commands)
+foreach (ICommand command in commands)
 {
     command.Execute();
 }
@@ -363,6 +372,7 @@ The extension method called [AddSubtypesOf](https://DevD4v3.github.io/CPlugin.Ne
 var configurationRoot = new ConfigurationBuilder()
     .AddJsonFile("./appsettings.json")
     .Build();
+
 var jsonConfiguration = new CPluginJsonConfiguration(configurationRoot);
 PluginLoader.Load(jsonConfiguration);
 
@@ -371,7 +381,8 @@ services.AddSubtypesOf<ICommand>(ServiceLifetime.Transient);
 
 using var serviceProvider = services.BuildServiceProvider();
 IEnumerable<ICommand> commands = serviceProvider.GetServices<ICommand>();
-foreach(ICommand command in commands)
+
+foreach (ICommand command in commands)
 {
     command.Execute();
 }
@@ -392,7 +403,7 @@ using Plugin.Contracts;
 
 namespace Project.PluginExample;
 
-public class HelloWorldCommand : ICommand
+internal class HelloWorldCommand : ICommand
 {
     public string Name => nameof(HelloWorldCommand);
     public string Description => "Outputs Hello Word";
@@ -405,6 +416,67 @@ public class HelloWorldCommand : ICommand
 }
 ```
 `HelloWorldCommand` type is a subtype of `ICommand`. Absolutely nobody knows about this implementation, not even the host application. However, this attribute is not necessary if the plugin does not need to implement any contract.
+
+### Declare plugin dependencies
+
+A plugin can declare dependencies on other plugins using the `DependsOnAttribute`.
+This attribute is optional and should only be used when a plugin depends on services provided by another plugin.
+
+**Example:**
+
+```cs
+[assembly: Plugin(typeof(GunGameCommand))]
+// GunGamePlugin consumes IWeapon services registered by WeaponsPlugin.
+// Therefore, WeaponsPlugin must also be included in the plugin configuration.
+[assembly: DependsOn("WeaponsPlugin")]
+
+namespace GunGamePlugin;
+
+internal class GunGameCommand(IEnumerable<IWeapon> weapons) : ICommand
+{
+    public string Name => "gungame";
+    public string Description => "Lists the available weapons.";
+    public string Version => "1.0.0";
+
+    public int Execute()
+    {
+        Console.WriteLine();
+        Console.WriteLine("Registered weapons:");
+
+        foreach (IWeapon weapon in weapons.OrderBy(w => w.Slot))
+        {
+            Console.WriteLine($"[{weapon.Slot}] {weapon.Name} (Id: {weapon.Id})");
+        }
+
+        Console.WriteLine();
+        return 0;
+    }
+}
+```
+
+The dependency must also be listed in the plugin configuration.
+
+**Example (.env):**
+
+```env
+PLUGINS="
+GunGamePlugin.dll
+WeaponsPlugin.dll
+"
+```
+
+**Example (appsettings.json):**
+
+```json
+{
+  "Plugins": [
+    "GunGamePlugin.dll"
+    "WeaponsPlugin.dll"
+  ]
+}
+```
+
+If `WeaponsPlugin` is not included in the plugin configuration, `PluginLoader.Load(...)` throws a `PluginDependencyException`.
 
 ### Creation of a Directory.Build.props file
 
@@ -580,6 +652,18 @@ You can find a complete and functional example in these projects:
 - [Understand Advanced AssemblyLoadContext with C#](https://tsuyoshiushio.medium.com/understand-advanced-assemblyloadcontext-with-c-16a9d0cfeae3)
 - [Plug-in Architecture](https://medium.com/omarelgabrys-blog/plug-in-architecture-dec207291800)
 - [Plug-in (computing)](https://en.wikipedia.org/wiki/Plug-in_(computing))
+
+## Contribution
+
+Contributions of all kinds are welcome! You can help by improving the code, documentation, or tests.
+
+To contribute:
+
+- Fork the repository.
+- Create a feature branch (`git checkout -b my-new-change`).
+- Commit your changes (`git commit -am "Add some change"`).
+- Push to your branch (`git push origin my-new-change`).
+- Open a Pull Request.
 
 ## License
 
