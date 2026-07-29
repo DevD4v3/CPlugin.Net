@@ -40,7 +40,6 @@ public static class PluginLoader
         string[] pluginFiles = [.. configuration.GetPluginFiles()];
         HashSet<string> configuredPluginNames = pluginFiles
             .Select(Path.GetFileName)
-            .Select(PluginNameNormalizer.Normalize)
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
         foreach (string pluginFile in pluginFiles)
