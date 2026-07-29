@@ -13,10 +13,6 @@ jobs:
       id-token: write
       contents: read
 
-    defaults:
-      run:
-        working-directory: src
-
     steps:
       - uses: actions/checkout@v4
 
